@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FresiaApp.Pages.ProfileViewPage"
+             BackgroundColor="#E0E0E0">
+
+    <Grid BackgroundColor="#E0E0E0" RowSpacing="0">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="250"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid BackgroundColor="#FFFFFF"
+                                   Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="75"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackLayout Grid.Row="1" Margin="25,0,0,0">
+                <Label Text="{Binding Timeline}" TextColor="Gray" Opacity="0.6" />
+            </StackLayout>
+            <CarouselView>
+
+            </CarouselView>
+        </Grid>
+
+    </Grid>
+    
+</ContentView>

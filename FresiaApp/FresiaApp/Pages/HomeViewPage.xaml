@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
+             xmlns:sk="clr-namespace:Xamarin.Forms.Skeleton;assembly=Xamarin.Forms.Skeleton"
+             xmlns:localfont= "clr-namespace:TabViewApp.AppFonts"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib" 
+             x:Class="FresiaApp.Pages.HomeViewPage"
+             BackgroundColor="#E0E0E0">
+
+    <Grid BackgroundColor="#FFFFFF">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="160"/>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+
+        <Grid BackgroundColor="#FFFFFF" Grid.Row="0" Grid.RowSpan="2">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="160"/>
+                <RowDefinition Height="200"/>
+            </Grid.RowDefinitions>
+
+            <StackLayout Grid.Row="1" Spacing="0">
+
+                <StackLayout Margin="25,10,0,0"
+                             sk:Skeleton.IsParent="True"
+                             sk:Skeleton.IsBusy="{Binding IsBusy}"
+                             sk:Skeleton.BackgroundColor="Gray">
+                    <Label Text="{Binding Timeline}" TextColor="Gray" Opacity="0.6" />
+                    <Label Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat='{0:dd, mmmm, yyyy}'}"
+                           TextColor="Black" FontSize="Medium" Opacity="0.7"/>
+                </StackLayout>
+
+                <CarouselView ItemsSource="{Binding TimelineMenu}"
+                                 PeekAreaInsets="80" >
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Frame HasShadow="False">
+                                    <yummy:PancakeView CornerRadius="6">
+                                        <yummy:PancakeView.Border>
+                                            <yummy:Border Color="#B0BEC5" Thickness="1" />
+                                        </yummy:PancakeView.Border>
+
+                                        <StackLayout Padding="10,15">
+                                            <StackLayout Orientation="Horizontal">
+
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Image VerticalOptions="Start"
+                                                            sk:Skeleton.IsBusy="{Binding IsBusy}"
+                                                            sk:Skeleton.BackgroundColor="Gray">
+                                                        <Image.Source>
+                                                            <FontImageSource Color="#979797"   FontFamily="MyIcon" Glyph="{x:Static localfont:FontIconClass.Clock}"
+                                                                             Size="15" />
+                                                        </Image.Source>
+                                                    </Image>
+
+                                                    <Label Text="{Binding Time}" LineBreakMode="TailTruncation"
+                                                           FontSize="12" TextColor="#979797"  sk:Skeleton.IsBusy="{Binding IsBusy}"
+                                                           sk:Skeleton.BackgroundColor="Gray"/>
+
+                                                </StackLayout>
+
+
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Image  sk:Skeleton.IsBusy="{Binding IsBusy}"
+                                                            sk:Skeleton.BackgroundColor="Gray">
+                                                        <Image.Source>
+                                                            <FontImageSource Color="#979797"   FontFamily="MyIcon" Glyph="{x:Static localfont:FontIconClass.Telegram}"
+                                                                             Size="18"
+                                                                             sk:Skeleton.IsBusy="{Binding IsBusy}"
+                                                                             sk:Skeleton.BackgroundColor="Gray"/>
+                                                        </Image.Source>
+                                                    </Image>
+
+                                                    <Label Text="{Binding Room}" LineBreakMode="TailTruncation"
+                                                       FontSize="12" TextColor="#979797"
+                                                            sk:Skeleton.IsBusy="{Binding IsBusy}"
+                                                            sk:Skeleton.BackgroundColor="Gray"/>
+
+                                                </StackLayout>
+
+                                            </StackLayout>
+
+                                            <Label Text="{Binding CourseTitle}" TextColor="#000000" LineBreakMode="TailTruncation"
+                                                    sk:Skeleton.IsBusy="{Binding IsBusy}"
+                                                    sk:Skeleton.BackgroundColor="Gray"/>
+
+                                            <StackLayout Orientation="Horizontal">
+
+                                                <Image  sk:Skeleton.IsBusy="{Binding IsBusy}"
+                                                        sk:Skeleton.BackgroundColor="Gray">
+                                                    <Image.Source>
+                                                        <FontImageSource Color="#979797"   FontFamily="MyIcon" Glyph="{x:Static localfont:FontIconClass.CircleMultiple}"
+                                                                             Size="15" />
+                                                    </Image.Source>
+                                                </Image>
+
+                                                <Label Text="{Binding CourseState}" LineBreakMode="TailTruncation"
+                                                   TextColor="#979797"  sk:Skeleton.IsBusy="{Binding IsBusy}"
+                                                    sk:Skeleton.BackgroundColor="Gray"/>
+                                            </StackLayout>
+
+                                        </StackLayout>
+                                    </yummy:PancakeView>
+                                </Frame>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+
+                </CarouselView>
+
+            </StackLayout>
+
+        </Grid>
+
+        <Grid Grid.Row="2" RowSpacing="0">
+            
+        <StackLayout Margin="10" >
+            <CollectionView ItemsSource="{Binding Feeds}"
+                            SelectionMode="Multiple"
+                            SelectedItems="{Binding SelectedFeeds}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="10" >
+
+
+                            <yummy:PancakeView Background="#FFFFFF">
+                                
+                                <yummy:PancakeView.Shadow>
+                                    <yummy:DropShadow Color="LightGray" />
+                                </yummy:PancakeView.Shadow>
+
+                                <Grid >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                        <Frame Grid.Row="0" Grid.RowSpan="2" Grid.Column="0"  BackgroundColor="LightBlue">
+
+                                            <Image  sk:Skeleton.IsBusy="{Binding IsBusy}"
+                                                    sk:Skeleton.BackgroundColor="Gray">
+                                                <Image.Source>
+                                                    <FontImageSource Color="#FFFFFF"   FontFamily="MyIcon" Glyph="{x:Static localfont:FontIconClass.Twitter}"
+                                                                             Size="20" />
+                                                </Image.Source>
+                                            </Image>
+
+                                        </Frame>
+
+                                    <Label Grid.Row="0" Grid.Column="1" Text="{Binding Title}" Margin="20"
+                                            sk:Skeleton.IsBusy="{Binding IsBusy}"
+                                            sk:Skeleton.BackgroundColor="Gray"/>
+
+                                    <Label Grid.Row="1" Grid.Column="1" Text="{Binding Description}" Margin="10" LineBreakMode="TailTruncation"
+                                            sk:Skeleton.IsBusy="{Binding IsBusy}"
+                                            sk:Skeleton.BackgroundColor="Gray"/>
+                                </Grid>
+
+                            </yummy:PancakeView>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+
+        </Grid>
+
+
+    </Grid>
+</ContentView>

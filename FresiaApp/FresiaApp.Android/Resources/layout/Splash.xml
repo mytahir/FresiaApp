@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+ <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:background="#019642">
+
+        <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:scaleType="center"
+        android:src="@drawable/Logo03"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="0.0dp"
+        android:contentDescription="Fresia App" />
+ 
+
+
+   <!--<TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Tax Calculator"
+        android:fontFamily="serif"
+        android:textColor="#000000"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="60dp"
+        android:layout_margin="10dp"
+        android:textSize="30dp"
+        />--> 
+        
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_gravity="center"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="Loader02.json"
+        app:lottie_loop="true"
+        app:lottie_speed="1.00"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="0.0dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginRight="0.0dp" />
+
+        <!--<TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Initialzing......"
+        android:fontFamily="serif"
+        android:textColor="@android:color/darker_gray"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="30dp"
+        android:textSize="10dp"
+        />-->
+
+</RelativeLayout>

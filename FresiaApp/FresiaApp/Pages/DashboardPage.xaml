@@ -1,0 +1,262 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
+             ios:Page.UseSafeArea="true"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:localfont= "clr-namespace:TabViewApp.AppFonts"
+             xmlns:homepage="clr-namespace:FresiaApp.Pages"
+             xmlns:profilepage="clr-namespace:FresiaApp.Pages"
+             xmlns:academypage="clr-namespace:FresiaApp.Pages"
+             xmlns:myschoolpage="clr-namespace:FresiaApp.Pages"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit" 
+             xmlns:sk="clr-namespace:Xamarin.Forms.Skeleton;assembly=Xamarin.Forms.Skeleton"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
+             xmlns:Sh="clr-namespace:Sharpnado.Shades;assembly=Sharpnado.Shadows" 
+             xmlns:pagemodels="clr-namespace:FresiaApp.PageModels" 
+             x:DataType="pagemodels:DashboardPageModel"
+             x:Class="FresiaApp.Pages.DashboardPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ControlTemplate
+		        x:Key="TabItemTemplate">
+                <Grid
+			        RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Image
+				        Grid.Row="0"
+				        VerticalOptions="Center"
+				        HorizontalOptions="Center"
+				        WidthRequest="26"
+				        HeightRequest="26"
+				        Source="{TemplateBinding CurrentIcon}" />
+                    <Label
+				        Grid.Row="1"
+				        HorizontalOptions="Center"
+				        FontSize="{TemplateBinding FontSize}"
+				        Text="{TemplateBinding Text}"
+				        TextColor="{TemplateBinding CurrentTextColor}" />
+                </Grid>
+            </ControlTemplate>
+
+            <ControlTemplate
+                x:Key="FabTabItemTemplate">
+                <Grid>
+                    <ImageButton
+                        InputTransparent="True"
+                        Source="{TemplateBinding CurrentIcon}"
+                        Padding="15"
+                        HorizontalOptions="Center"
+                        BackgroundColor="#019642"
+                        BorderColor="#E0E0E0"
+                        BorderWidth="3"
+                        HeightRequest="60"
+                        WidthRequest="60"
+                        Margin="0,0,0,0">
+                        <ImageButton.CornerRadius>
+                            <OnPlatform x:TypeArguments="x:Int32">
+                                <On Platform="iOS" Value="30"/>
+                                <On Platform="Android" Value="60"/>
+                                <On Platform="UWP" Value="36"/>
+                            </OnPlatform>
+                        </ImageButton.CornerRadius>
+                        <ImageButton.IsVisible>
+                            <OnPlatform x:TypeArguments="x:Boolean">
+                                <On Platform="Android, iOS, UWP">True</On>
+                                <On Platform="macOS">False</On>
+                            </OnPlatform>
+                        </ImageButton.IsVisible>
+                    </ImageButton>
+                    <BoxView  
+                        InputTransparent="True"
+                        HorizontalOptions="Center"
+                        CornerRadius="30"
+                        BackgroundColor="#FF0000"
+                        HeightRequest="60"
+                        WidthRequest="60"
+                        Margin="6">
+                        <BoxView.IsVisible>
+                            <OnPlatform x:TypeArguments="x:Boolean">
+                                <On Platform="Android, iOS, UWP">False</On>
+                                <On Platform="macOS">True</On>
+                            </OnPlatform>
+                        </BoxView.IsVisible>
+                    </BoxView>
+                </Grid>
+            </ControlTemplate>
+
+            <Style
+		        x:Key="CustomTabStyle"
+		        TargetType="xct:TabView">
+                <Setter
+			        Property="IsTabTransitionEnabled"
+			        Value="True" />
+                <Setter
+			        Property="TabStripHeight"
+			        Value="48" />
+                <Setter
+			        Property="TabContentBackgroundColor"
+			        Value="#C2C3C3" />
+                <Setter
+			        Property="TabStripPlacement"
+			        Value="Bottom" />
+            </Style>
+ 
+        </ResourceDictionary>
+
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid>
+
+            <xct:TabView Style="{StaticResource CustomTabStyle}" IsSwipeEnabled="False">
+                <xct:TabView.TabStripBackgroundView>
+
+                    <Sh:Shadows x:Name="AppMenu">
+                        <Sh:Shadows.Shades>
+                            <Sh:ImmutableShades>
+                                <Sh:Shade Opacity="0.2" 
+                                          Offset="0,-10"
+                                          Color="#979797"/>
+                            </Sh:ImmutableShades>
+                        </Sh:Shadows.Shades>
+                            <BoxView BackgroundColor="White" WidthRequest="30" />
+                    </Sh:Shadows>
+                    
+                </xct:TabView.TabStripBackgroundView>
+
+                <xct:TabViewItem x:Name="MyTab1"   
+                    TabTapped="MyTab1_TabTapped"
+                    FontFamily="MyIcon"  
+                    Text="Dashboard"
+                    TextColor="#979797"
+                    TextColorSelected="Black"
+                    ControlTemplate="{StaticResource TabItemTemplate}">
+                    <xct:TabViewItem.Icon>
+                        <FontImageSource Color="#979797"   FontFamily="MyIcon" Glyph="{x:Static localfont:FontIconClass.DotsGrid}"/>
+                    </xct:TabViewItem.Icon>
+                    <xct:TabViewItem.IconSelected>
+                        <FontImageSource Color="Black"  FontFamily="MyIcon" Glyph="{x:Static  localfont:FontIconClass.DotsGrid}"/>
+                    </xct:TabViewItem.IconSelected>
+                    <homepage:HomeViewPage></homepage:HomeViewPage>
+                </xct:TabViewItem>
+
+                <xct:TabViewItem x:Name="MyTab3"   
+                    TabTapped="MyTab3_TabTapped"
+                    FontFamily="MyIcon"  
+                    Text="Academic" 
+                    TextColor="#979797"
+                    TextColorSelected="Black"
+                    ControlTemplate="{StaticResource TabItemTemplate}">
+                    <xct:TabViewItem.Icon>
+                        <FontImageSource Color="#979797"   FontFamily="MyIcon" Glyph="{x:Static localfont:FontIconClass.BookEducation}"/>
+                    </xct:TabViewItem.Icon>
+                    <xct:TabViewItem.IconSelected>
+                        <FontImageSource Color="Black"  FontFamily="MyIcon" Glyph="{x:Static  localfont:FontIconClass.BookEducation}"/>
+                    </xct:TabViewItem.IconSelected>
+                    <academypage:AcademyViewPage></academypage:AcademyViewPage>
+                </xct:TabViewItem>
+
+                <xct:TabViewItem
+                    x:Name="Tab2"
+                    Icon="map.png"
+                    ControlTemplate="{StaticResource FabTabItemTemplate}"
+                    TextColor="#979797"
+                    TextColorSelected="Black"
+                    TabTapped="Tab2_TabTapped" Margin="0,0,0,0"/>
+
+                <xct:TabViewItem
+                    Text="My School"
+                    ControlTemplate="{StaticResource TabItemTemplate}"
+                    TextColor="#979797"
+                    TextColorSelected="Black">
+                    <xct:TabViewItem.Icon>
+                        <FontImageSource Color="#979797"  FontFamily="MyIcon" Glyph="{x:Static  localfont:FontIconClass.Collage}"/>
+                    </xct:TabViewItem.Icon>
+
+                    <xct:TabViewItem.IconSelected>
+                        <FontImageSource Color="Black"  FontFamily="MyIcon" Glyph="{x:Static localfont:FontIconClass.Collage}"/>
+                    </xct:TabViewItem.IconSelected>
+                    <myschoolpage:MySchoolViewPage></myschoolpage:MySchoolViewPage>
+                </xct:TabViewItem>
+
+                <xct:TabViewItem 
+                    Text="My Profile" 
+                    ControlTemplate="{StaticResource TabItemTemplate}"
+                    TextColor="#979797"
+                    TextColorSelected="Black">
+                    <xct:TabViewItem.Icon>
+                        <FontImageSource Color="#979797"  FontFamily="MyIcon" Glyph="{x:Static  localfont:FontIconClass.Account}"/>
+                    </xct:TabViewItem.Icon>
+
+                    <xct:TabViewItem.IconSelected>
+                        <FontImageSource Color="Black"  FontFamily="MyIcon" Glyph="{x:Static localfont:FontIconClass.Account}"/>
+                    </xct:TabViewItem.IconSelected>
+
+                    <profilepage:ProfileViewPage></profilepage:ProfileViewPage>
+                </xct:TabViewItem>
+
+            </xct:TabView>
+
+            <Grid VerticalOptions="StartAndExpand" RowSpacing="0">
+                
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+
+                <Frame BackgroundColor="#019642"
+                   Grid.Row="0" Grid.RowSpan="2"
+                        sk:Skeleton.IsParent="True"
+                  sk:Skeleton.IsBusy="{Binding IsBusy}"
+                  sk:Skeleton.BackgroundColor="LightGray"
+                  sk:Skeleton.Animation="Fade">
+                    <Label Text="Fresia App" HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Start" TextColor="#FFFFFF" FontSize="Large" />
+                </Frame>
+
+                <Sh:Shadows x:Name="AppHeader" Grid.Row="1" Grid.RowSpan="2">
+                    <Sh:Shadows.Shades>
+                        <Sh:ImmutableShades>
+                            <Sh:Shade Opacity="0.1" 
+                                          Offset="0 ,50"
+                                          Color="#979797"/>
+                        </Sh:ImmutableShades>
+                    </Sh:Shadows.Shades>
+
+                    <yummy:PancakeView 
+                                       BackgroundColor="#FFFFFF" CornerRadius="10,0,10,0"
+                                       Margin="20,0,0,0">
+
+                        <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" 
+                                 HorizontalOptions="CenterAndExpand" Spacing="80">
+                            <StackLayout>
+                                <Label Text="08" FontSize="25" TextColor="Black" HorizontalOptions="Center"/>
+                                <Label Text="EXAMS" FontSize="10" />
+                            </StackLayout>
+                            <StackLayout>
+                                <Label Text="02" FontSize="25" TextColor="Black" HorizontalOptions="Center"/>
+                                <Label Text="PROJECTS" FontSize="10"/>
+                            </StackLayout>
+                            <StackLayout>
+                                <Label Text="91" FontSize="25" TextColor="Black" HorizontalOptions="Center"/>
+                                <Label Text="CLASSES" FontSize="10"/>
+                            </StackLayout>
+
+                        </StackLayout>
+
+                    </yummy:PancakeView>
+                </Sh:Shadows>
+
+            </Grid>
+
+        </Grid>
+    </ContentPage.Content>
+
+</ContentPage>
